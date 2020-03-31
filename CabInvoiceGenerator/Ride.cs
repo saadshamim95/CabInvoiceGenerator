@@ -7,7 +7,6 @@ namespace CabInvoiceGenerator
 {
     public class Ride
     {
-        //List<Ride> userRide = new List<Ride>();
         double distance;
         double time;
 

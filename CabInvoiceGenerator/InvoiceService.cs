@@ -10,6 +10,25 @@ namespace CabInvoiceGenerator
         private readonly int minimumFare = 5;
         private readonly int costPerMinute = 1;
         private double totalCost = 0;
+        private double totalFare = 0;
+        private double averageFare = 0;
+        private int numberOfRides = 0;
+
+        public double AverageFare
+        {
+            get 
+            {
+                return this.averageFare;
+            }
+        }
+
+        public int NumberOfRides
+        {
+            get
+            {
+                return this.numberOfRides;
+            }
+        }
 
         public double CalculateFare(double distance, double time)
         {
@@ -26,10 +45,12 @@ namespace CabInvoiceGenerator
         {
             foreach (var item in ride)
             {
-                totalCost = totalCost + CalculateFare(item.Distance, item.Time);
+                totalFare = totalFare + CalculateFare(item.Distance, item.Time);
             }
 
-            return totalCost;
+            numberOfRides = ride.Length;
+            averageFare = totalFare / numberOfRides;
+            return totalFare;
         }
     }
 }

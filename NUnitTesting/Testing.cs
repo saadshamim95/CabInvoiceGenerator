@@ -29,8 +29,24 @@ namespace NUnitTesting
                 new Ride(10,25)
             };
             double actual = invoiceService.CalculateFare(ride);
-            Console.WriteLine(actual);
             Assert.AreEqual(190, actual);
+        }
+
+        [Test]
+        public void InvoiceGeneratorShouldTakeMultipleRides_WhenAnalyze_ReturnTotalFareNumberOfRidesAndAverageFare()
+        {
+            InvoiceService invoiceService = new InvoiceService();
+            Ride[] ride = {
+                new Ride(5,15),
+                new Ride(10,25),
+                new Ride(15,40)
+            };
+            double totalFare = invoiceService.CalculateFare(ride);
+            double averageFare = Math.Round(invoiceService.AverageFare, 2);
+            int numberOfRides = invoiceService.NumberOfRides;
+            Assert.AreEqual(380, totalFare);
+            Assert.AreEqual(126.67, averageFare);
+            Assert.AreEqual(3, numberOfRides);
         }
     }
 }
