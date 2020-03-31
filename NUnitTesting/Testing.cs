@@ -14,8 +14,8 @@ namespace NUnitTesting
         public void GivenDistanceAndTimeWhenCheck_ShouldReturnTotalFare()
         {
             InvoiceService invoiceService = new InvoiceService();
-            double actual = invoiceService.CalculateFare(3, 15);
-            Assert.AreEqual(45, actual);
+            double actual = invoiceService.CalculateFare(0.1, 1);
+            Assert.AreEqual(5, actual);
         }
     }
 }
