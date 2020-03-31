@@ -1229,6 +1229,9 @@
       "CabInvoiceGenerator/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "System.Collections.NonGeneric": "4.3.0"
+        },
         "compile": {
           "bin/placeholder/CabInvoiceGenerator.dll": {}
         },

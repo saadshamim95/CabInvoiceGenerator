@@ -867,6 +867,9 @@
         }
       },
       "CabInvoiceGenerator/1.0.0": {
+        "dependencies": {
+          "System.Collections.NonGeneric": "4.3.0"
+        },
         "runtime": {
           "CabInvoiceGenerator.dll": {}
         }
