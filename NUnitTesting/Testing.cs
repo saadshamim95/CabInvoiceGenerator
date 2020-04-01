@@ -48,5 +48,22 @@ namespace NUnitTesting
             Assert.AreEqual(126.67, averageFare);
             Assert.AreEqual(3, numberOfRides);
         }
+
+        [Test]
+        public void GivenUserId_InvoiceServiceGetsListOfRidesFromRideRepository_ReturnInvoice()
+        {
+            string userId = "saad@gmail.com";
+            Ride[] ride = {
+                new Ride(5,15),
+                new Ride(10,25),
+                new Ride(15,40)
+            };
+            RideRepository rideRepository = new RideRepository();
+            rideRepository.AddRides(userId, ride);
+            InvoiceService invoiceService = new InvoiceService();
+            double totalFare = invoiceService.CalculateFare(rideRepository.GetRides(userId));
+            Assert.AreEqual(380, totalFare);
+        }
+
     }
 }
