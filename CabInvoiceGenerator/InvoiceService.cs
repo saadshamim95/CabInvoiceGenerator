@@ -6,9 +6,12 @@ namespace CabInvoiceGenerator
 {
     public class InvoiceService
     {
-        private readonly int costPerKilometre = 10;
-        private readonly int minimumFare = 5;
-        private readonly int costPerMinute = 1;
+        private readonly int costPerKilometreNormal = 10;
+        private readonly int minimumFareNormal = 5;
+        private readonly int costPerMinuteNormal = 1;
+        private readonly int costPerKilometrePremium = 15;
+        private readonly int minimumFarePremium = 20;
+        private readonly int costPerMinutePremium = 2;
         private double totalCost = 0;
         private double totalFare = 0;
         private double averageFare = 0;
@@ -30,22 +33,33 @@ namespace CabInvoiceGenerator
             }
         }
 
-        public double CalculateFare(double distance, double time)
+        public double CalculateFare(string journeyType, double distance, double time)
         {
-            totalCost = distance * costPerKilometre + time * costPerMinute;
-            if (totalCost > minimumFare)
+            if (journeyType == "Normal")
+            {
+                totalCost = distance * costPerKilometreNormal + time * costPerMinuteNormal;
+                if (totalCost > minimumFareNormal)
+                {
+                    return totalCost;
+                }
+
+                return minimumFareNormal;
+            }
+
+            totalCost = distance * costPerKilometrePremium + time * costPerMinutePremium;
+            if (totalCost > minimumFarePremium)
             {
                 return totalCost;
             }
 
-            return minimumFare;
+            return minimumFarePremium;
         }
 
         public double CalculateFare(Ride[] ride)
         {
             foreach (var item in ride)
             {
-                totalFare = totalFare + CalculateFare(item.Distance, item.Time);
+                totalFare = totalFare + CalculateFare(item.JourneyType, item.Distance, item.Time);
             }
 
             numberOfRides = ride.Length;
